@@ -1,0 +1,7 @@
+---
+mackerel_agent_apikey: "{{ lookup('env', 'MACKEREL_APIKEY')}}"
+mackerel_agent_include: "/etc/mackerel-agent/conf.d/*.conf"
+
+mackerel_use_plugins: yes
+mackerel_agent_plugins:
+  linux: "/usr/local/bin/mackerel-plugin-linux"

@@ -1,0 +1,6 @@
+---
+- hosts: servers
+  roles:
+    - mackerel-agent
+  vars_files:
+    - vars/main.yml

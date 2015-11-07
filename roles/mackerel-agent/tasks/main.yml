@@ -1,0 +1,4 @@
+---
+- name: Create conf.d
+  file: path=/etc/mackerel-agent/conf.d/ state=directory
+  sudo: yes
