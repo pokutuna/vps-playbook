@@ -7,11 +7,13 @@
   - name: set hostname
     hostname:
       name: "{{ hostname }}"
+    when: hostname is defined
   - name: bind hostname to own address
     lineinfile:
       dest: "/etc/hosts"
       line: "{{ ansible_default_ipv4.address }}\t{{ hostname }}"
       state: present
+    when: hostname is defined
   - name: generate ssh keys
     user:
       name: "{{ ansible_ssh_user }}"
