@@ -13,3 +13,5 @@
     owner: "{{ user_deploy_username }}"
     group: "{{ user_deploy_username }}"
     validate_certs: yes
+- include: sudoers.yml
+  sudo: yes

@@ -1,0 +1,12 @@
+---
+- name: collect command paths
+  shell: "which {{ item }}"
+  register: fullpaths
+  with_items: "{{ user_deploy_commands }}"
+  changed_when: False
+- name: add sudoers
+  lineinfile:
+    dest: "/etc/sudoers"
+    state: present
+    line: "{{ user_deploy_username }} ALL=(ALL) PASSWD:ALL, NOPASSWD:{{ fullpaths.results | map(attribute='stdout') | join(',') }}"
+    validate: "visudo -cf %s"

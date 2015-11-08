@@ -22,3 +22,14 @@ ufw_allow_ports:
 
 user_github_username: "pokutuna"
 user_deploy_username: "deploy"
+user_deploy_commands:
+  - cp
+  - mkdir
+  - mv
+  - cat
+  - tailf
+  - ln
+  - chown
+  - chmod
+  - service
+  - supervisorctl
