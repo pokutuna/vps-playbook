@@ -1,0 +1,5 @@
+---
+- name: ufw setting in ubuntu
+  sudo: yes
+  include: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"

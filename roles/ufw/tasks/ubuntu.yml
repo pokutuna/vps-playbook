@@ -1,0 +1,21 @@
+---
+- name: logging on
+  ufw:
+    logging: "on"
+- name: default incoming policy
+  ufw:
+    policy: "deny"
+    direction: "incoming"
+- name: default outgoing policy
+  ufw:
+    policy: "allow"
+    direction: "outgoing"
+- name: allow ports
+  ufw:
+    rule: "allow"
+    port: "{{ item }}"
+  with_items: "{{ ufw_allow_ports }}"
+- include: allow_connecting_port.yml
+- name: enable
+  ufw:
+    state: "enabled"

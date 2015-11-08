@@ -12,3 +12,10 @@ mackerel_agent_plugins:
 im_kayac_username: "{{ lookup('env', 'IM_KAYAC_USERNAME') }}"
 im_kayac_use_password: no
 im_kayac_password: "{{ lookup('env', 'IM_KAYAC_PASSWORD') }}"
+
+ufw_allow_ports:
+  - 80
+  - 443
+  - 2222
+  - 8080
+  - 16667

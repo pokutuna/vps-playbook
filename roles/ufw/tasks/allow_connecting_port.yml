@@ -1,0 +1,13 @@
+---
+- name: gather a fact connection port
+  set_fact:
+    connecting_port: "{{ ansible_env.SSH_CLIENT.split(' ')[-1] }}"
+- name: allow connecting port
+  ufw:
+    rule: "allow"
+    port: "{{ connecting_port }}"
+  register: allow_connecting
+- name: notice if allowed
+  when: allow_connecting.changed
+  debug:
+    msg: current connectingport {{ connecting_port }} allowed
