@@ -1,10 +1,22 @@
 vps-playbook
 ===
 
-# How to Run
+# How to Play
 ```shell
 $ ansible-galaxy install -r requriements.yml
 $ ansible-playbook site.yml
+```
+
+## `pre_setup.yml`
+- login with password authentication
+- set hostname
+- put authorized_keys
+- basic ssh config
+
+```shell
+# example
+$ ansible-playbook -i "192.168.33.10," pre_setup.yml \
+    --ask-pass --extra-vars="hostname=oneetyan ssh_port=8080"
 ```
 
 # System

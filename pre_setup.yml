@@ -1,0 +1,41 @@
+---
+- hosts: all
+  sudo: yes
+  vars_files:
+    - vars/main.yml
+  tasks:
+  - name: set hostname
+    hostname:
+      name: "{{ hostname }}"
+  - name: bind hostname to own address
+    lineinfile:
+      dest: "/etc/hosts"
+      line: "{{ ansible_default_ipv4.address }}\t{{ hostname }}"
+      state: present
+  - name: generate ssh keys
+    user:
+      name: "{{ ansible_ssh_user }}"
+      generate_ssh_key: yes
+  - name: put authorized_keys from github
+    get_url:
+      url:  "https://github.com/{{ user_github_username }}.keys"
+      dest: "/home/{{ ansible_ssh_user }}/.ssh/authorized_keys"
+      owner: "{{ ansible_ssh_user }}"
+      group: "{{ ansible_ssh_user }}"
+      validate_certs: yes
+  - name: change sshd config
+    lineinfile:
+      dest: "/etc/ssh/sshd_config"
+      state: present
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+    with_items:
+      - { regexp: "^Port ", line: "Port {{ ssh_port | default(22) }}" }
+      - { regexp: "^PermitRootLogin ", line: "PermitRootLogin no" }
+      - { regexp: "^PasswordAuthentication ", line: "PasswordAuthentication no" }
+    notify: restart sshd
+  handlers:
+  - name: restart sshd
+    service:
+      name: "ssh"
+      state: "restarted"
