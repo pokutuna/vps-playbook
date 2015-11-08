@@ -19,3 +19,6 @@ ufw_allow_ports:
   - 2222
   - 8080
   - 16667
+
+user_github_username: "pokutuna"
+user_deploy_username: "deploy"

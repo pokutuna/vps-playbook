@@ -1,0 +1,15 @@
+---
+- name: add user deploy
+  sudo: yes
+  user:
+    name: "{{ user_deploy_username }}"
+    createhome: yes
+    generate_ssh_key: yes
+- name: put authorized_keys from github
+  sudo: yes
+  get_url:
+    url:  "https://github.com/{{ user_github_username }}.keys"
+    dest: "/home/{{ user_deploy_username }}/.ssh/authorized_keys"
+    owner: "{{ user_deploy_username }}"
+    group: "{{ user_deploy_username }}"
+    validate_certs: yes
