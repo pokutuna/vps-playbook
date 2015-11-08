@@ -1,0 +1,22 @@
+---
+- name: create script directory
+  sudo: yes
+  file:
+    path: "{{ supervisor_scripts_dir }}"
+    state: directory
+- name: put listener script
+  sudo: yes
+  template:
+    src: notify-im-kayac.py.j2
+    dest: "{{ supervisor_scripts_dir }}notify-im-kayac.py"
+    mode: "u=rwx,g=rwx,o=rx"
+- name: put listener config
+  sudo: yes
+  template:
+    src: listener-im-kayac.conf.j2
+    dest: "{{ supervisor_conf_dir }}notify-im-kayac.conf"
+- name: add listener
+  sudo: yes
+  supervisorctl:
+    name: notify-im-kayac
+    state: restarted

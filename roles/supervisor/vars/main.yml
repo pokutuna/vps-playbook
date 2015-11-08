@@ -1,0 +1,4 @@
+---
+supervisor_conf_dir: "/etc/supervisor/conf.d/"
+supervisor_scripts_dir: "/etc/supervisor/scripts/"
+supervisor_notify_events: "PROCESS_STATE_EXITED,PROCESS_STATE_FATAL"

@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+#coding:utf-8
+
+import os
+import sys
+import urllib
+import urllib2
+from supervisor import childutils
+
+def notify(message):
+    host = 'http://im.kayac.com/api/post/{{ im_kayac_username }}'
+    data = { 'message': message }
+
+    {% if im_kayac_use_password -%}
+    data['password'] = '{{ im_kayac_password }}'
+    {% endif %}
+
+    req = urllib2.Request(host, urllib.urlencode(data))
+    res = urllib2.urlopen(req)
+    sys.stderr.write(res.read() + '\n')
+    sys.stderr.flush()
+
+def main():
+    while True:
+        headers, payload = childutils.listener.wait()
+        notify(payload)
+        childutils.listener.ok()
+
+if __name__ == '__main__':
+    main()

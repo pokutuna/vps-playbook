@@ -1,0 +1,7 @@
+---
+- name: install supervisor
+  sudo: yes
+  apt:
+    name: supervisor
+    state: present
+- include: im-kayac.yml

@@ -5,3 +5,7 @@ mackerel_agent_include: "/etc/mackerel-agent/conf.d/*.conf"
 mackerel_use_plugins: yes
 mackerel_agent_plugins:
   linux: "/usr/local/bin/mackerel-plugin-linux"
+
+im_kayac_username: "pokutuna"
+im_kayac_use_password: no
+im_kayac_password: ""
