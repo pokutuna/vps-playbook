@@ -1,0 +1,23 @@
+---
+- name: add apt repository
+  sudo: yes
+  apt_repository:
+    repo: "{{ nginx_repository }}"
+    update_cache: yes
+- name: install nginx
+  sudo: yes
+  apt:
+    name: nginx
+    state: latest
+- name: put log_format ltsv
+  sudo: yes
+  copy:
+    src: log_format_ltsv.conf
+    dest: /etc/nginx/log_format_ltsv.conf
+  notify: reload
+- name: put nginx.conf
+  sudo: yes
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: reload

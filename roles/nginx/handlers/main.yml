@@ -1,0 +1,18 @@
+---
+- name: configtest
+  sudo: yes
+  shell: "nginx -t"
+  register: result
+  changed_when: "result.rc != 0"
+- name: reload
+  debug:
+    msg: "reload after checking"
+  changed_when: True
+  notify:
+    - configtest
+    - reload after checking
+- name: reload after checking
+  sudo: yes
+  service:
+    name: nginx
+    state: reloaded

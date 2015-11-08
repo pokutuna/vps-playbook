@@ -1,0 +1,3 @@
+---
+nginx_repository: "ppa:nginx/stable"
+nginx_user: "www-data"
