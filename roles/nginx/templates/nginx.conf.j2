@@ -19,6 +19,7 @@ http {
   include /etc/nginx/mime.types;
   default_type application/octet-stream;
 
+  include {{ nginx_loading_conf_dir }}*.conf;
 
   # SSL Settings
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
@@ -26,7 +27,6 @@ http {
 
 
   # Logging Settings
-  include /etc/nginx/log_format_ltsv.conf;
   access_log /var/log/nginx/access.log ltsv;
   error_log  /var/log/nginx/error.log;
 
@@ -37,6 +37,5 @@ http {
 
 
   # Virtual Host Configs
-  include /etc/nginx/conf.d/*.conf;
-  include /etc/nginx/sites-enabled/*;
+  include {{ nginx_sites_enabled_dir }}*;
 }

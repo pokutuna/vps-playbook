@@ -1,0 +1,8 @@
+server {
+  listen {{ nginx_stub_status_port }};
+  location {{ nginx_stub_status_location}} {
+    stub_status on;
+    access_log off;
+    allow 127.0.0.1;
+  }
+}

@@ -1,0 +1,15 @@
+---
+- name: gather nginx modules
+  shell: "nginx -V"
+  register: result
+  changed_when: False
+- name: ensure http_stub_status_module
+  when: result.stderr.find('--with-http_stub_status_module') == -1
+  fail:
+    msg: "http_stub_status_module is not enabled"
+- name: put
+  sudo: yes
+  template:
+    src: http_stub_status.nginx.conf.j2
+    dest: "{{ nginx_sites_enabled_dir}}http_stub_status.nginx.conf"
+  notify: reload

@@ -1,7 +1,9 @@
 ---
 - hosts: servers
   roles:
+    - nginx
     - mackerel-agent
     - supervisor
+
   vars_files:
     - vars/main.yml

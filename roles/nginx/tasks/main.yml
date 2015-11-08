@@ -13,7 +13,7 @@
   sudo: yes
   copy:
     src: log_format_ltsv.conf
-    dest: /etc/nginx/log_format_ltsv.conf
+    dest: "{{ nginx_loading_conf_dir }}log_format_ltsv.conf"
   notify: reload
 - name: put nginx.conf
   sudo: yes
@@ -21,3 +21,5 @@
     src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
   notify: reload
+- include: http_stub_status.yml
+  when: nginx_use_http_stub_status

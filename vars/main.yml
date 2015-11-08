@@ -1,11 +1,14 @@
 ---
+nginx_use_http_stub_status: yes
+
 mackerel_agent_apikey: "{{ lookup('env', 'MACKEREL_APIKEY')}}"
 mackerel_agent_include: "/etc/mackerel-agent/conf.d/*.conf"
 
 mackerel_use_plugins: yes
 mackerel_agent_plugins:
   linux: "/usr/local/bin/mackerel-plugin-linux"
+  nginx: "/usr/local/bin/mackerel-plugin-nginx -port={{ nginx_stub_status_port }} -path={{ nginx_stub_status_location }}"
 
-im_kayac_username: "pokutuna"
+im_kayac_username: "{{ lookup('env', 'IM_KAYAC_USERNAME') }}"
 im_kayac_use_password: no
-im_kayac_password: ""
+im_kayac_password: "{{ lookup('env', 'IM_KAYAC_PASSWORD') }}"

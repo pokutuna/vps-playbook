@@ -1,3 +1,9 @@
 ---
 nginx_repository: "ppa:nginx/stable"
 nginx_user: "www-data"
+nginx_loading_conf_dir:  "/etc/nginx/conf.d/"
+nginx_sites_enabled_dir: "/etc/nginx/sites-enabled/"
+
+nginx_use_http_stub_status: yes
+nginx_stub_status_port: "8001"
+nginx_stub_status_location: "/nginx_status"
