@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: groover.gitolite, sudo: yes }
