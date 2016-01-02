@@ -1,0 +1,13 @@
+---
+- name: update aptitude
+  sudo: yes
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: install packages
+  sudo: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ apt_packages }}"

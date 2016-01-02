@@ -1,11 +1,13 @@
 ---
 - hosts: servers
   roles:
+    - packages
     - ufw
     - nginx
     - mackerel-agent
     - supervisor
     - deploy_user
     - gitolite
+    - xbuild
   vars_files:
     - vars/main.yml

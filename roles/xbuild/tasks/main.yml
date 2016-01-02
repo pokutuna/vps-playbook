@@ -1,0 +1,40 @@
+---
+- name: install xbuild
+  sudo: yes
+  git:
+    repo: https://github.com/tagomoris/xbuild.git
+    dest: "{{ xbuild_install_dir }}/xbuild"
+
+- name: install ruby
+  sudo: yes
+  when: xbuild_ruby_version is defined
+  command: >
+    {{ xbuild_install_dir }}/xbuild/install ruby {{ xbuild_ruby_version }} {{ xbuild_install_dir }}/ruby-{{ xbuild_ruby_version }}
+    creates={{ xbuild_install_dir }}/ruby-{{ xbuild_ruby_version }}
+
+- name: install perl
+  sudo: yes
+  when: xbuild_perl_version is defined
+  command: >
+    {{ xbuild_install_dir }}/xbuild/install perl {{ xbuild_perl_version }} {{ xbuild_install_dir}}/perl-{{ xbuild_perl_version }}
+    creates={{ xbuild_install_dir }}/perl-{{ xbuild_perl_version }}
+
+- name: install go
+  sudo: yes
+  when: xbuild_go_version is defined
+  command: >
+    {{ xbuild_install_dir }}/xbuild/install go {{ xbuild_go_version }} {{ xbuild_install_dir}}/go-{{ xbuild_go_version }}
+    creates={{ xbuild_install_dir }}/go-{{ xbuild_go_version }}
+
+- name: install node
+  sudo: yes
+  when: xbuild_node_version is defined
+  command: >
+    {{ xbuild_install_dir }}/xbuild/install node {{ xbuild_node_version }} {{ xbuild_install_dir}}/node-{{ xbuild_node_version }}
+    creates={{ xbuild_install_dir }}/node-{{ xbuild_node_version }}
+
+- name: put /etc/profile.d/xbuild_paths.sh
+  sudo: yes
+  template:
+    src: xbuild_paths.sh.j2
+    dest: /etc/profile.d/xbuild_paths.sh

@@ -1,4 +1,14 @@
 ---
+apt_packages:
+  - git
+  - build-essential
+  - coreutils
+  - libssl-dev
+  - libxml2
+  - curl
+  - wget
+  - source-highlight
+
 nginx_use_http_stub_status: yes
 
 mackerel_agent_apikey: "{{ lookup('env', 'MACKEREL_APIKEY')}}"
@@ -33,3 +43,9 @@ user_deploy_commands:
   - chmod
   - service
   - supervisorctl
+
+xbuild_install_dir: /usr/local/xbuild
+xbuild_ruby_version: 2.3.0
+xbuild_perl_version: 5.22.0
+xbuild_go_version: 1.5.2
+xbuild_node_version: v5.3.0

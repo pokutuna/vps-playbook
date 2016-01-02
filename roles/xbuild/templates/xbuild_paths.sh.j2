@@ -1,0 +1,16 @@
+{% if xbuild_ruby_version is defined %}
+export PATH={{ xbuild_install_dir }}/ruby-{{ xbuild_ruby_version }}/bin:$PATH
+{% endif %}
+
+{% if xbuild_perl_version is defined %}
+export PATH={{ xbuild_install_dir }}/perl-{{ xbuild_perl_version }}/bin:$PATH
+{% endif %}
+
+{% if xbuild_go_version is defined %}
+export GOROOT={{ xbuild_install_dir }}/go-{{ xbuild_go_version }}
+export PATH={{ xbuild_install_dir }}/go-{{ xbuild_go_version }}/bin:$PATH
+{% endif %}
+
+{% if xbuild_node_version is defined %}
+export PATH={{ xbuild_install_dir }}/node-{{ xbuild_node_version }}/bin:$PATH
+{% endif %}
