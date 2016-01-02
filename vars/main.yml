@@ -5,6 +5,7 @@ apt_packages:
   - coreutils
   - libssl-dev
   - libxml2
+  - libreadline-dev
   - curl
   - wget
   - source-highlight
