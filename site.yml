@@ -6,9 +6,9 @@
     - nginx
     - mackerel-agent
     - supervisor
+    - docker
     - deploy_user
     - gitolite
     - xbuild
-    - docker
   vars_files:
     - vars/main.yml
