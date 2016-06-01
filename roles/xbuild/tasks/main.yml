@@ -30,6 +30,14 @@
     {{ xbuild_install_dir }}/xbuild/install go {{ xbuild_go_version }} {{ xbuild_install_dir}}/go-{{ xbuild_go_version }}
     creates={{ xbuild_install_dir }}/go-{{ xbuild_go_version }}/bin/go
 
+- name: install nodejs-legacy
+  become: yes
+  become_method: sudo
+  when: xbuild_node_version is defined
+  apt:
+    name: nodejs-legacy
+    state: latest
+
 - name: install node
   become: yes
   become_method: sudo
