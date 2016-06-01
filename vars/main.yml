@@ -1,14 +1,20 @@
 ---
 apt_packages:
-  - git
   - build-essential
   - coreutils
+  - curl
+  - git
+  - gzip
+  - libexpat1-dev
+  - libncurses5-dev
+  - libreadline6-dev
   - libssl-dev
   - libxml2
-  - libreadline-dev
-  - curl
-  - wget
+  - libyaml-dev
   - source-highlight
+  - tar
+  - wget
+  - zlib1g-dev
 
 nginx_use_http_stub_status: yes
 
@@ -44,6 +50,7 @@ user_deploy_commands:
   - chmod
   - service
   - supervisorctl
+  - docker
 
 xbuild_install_dir: /usr/local/xbuild
 xbuild_ruby_version: 2.3.0
