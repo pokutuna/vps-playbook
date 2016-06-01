@@ -1,6 +1,7 @@
 ---
 - name: configtest
-  sudo: yes
+  become: yes
+  become_method: sudo
   shell: "nginx -t"
   register: result
   changed_when: "result.rc != 0"
@@ -12,7 +13,8 @@
     - configtest
     - reload after checking
 - name: reload after checking
-  sudo: yes
+  become: yes
+  become_method: sudo
   service:
     name: nginx
     state: reloaded

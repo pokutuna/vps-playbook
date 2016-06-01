@@ -1,23 +1,27 @@
 ---
 - name: create script directory
-  sudo: yes
+  become: yes
+  become_method: sudo
   file:
     path: "{{ supervisor_scripts_dir }}"
     state: directory
 - name: put listener script
-  sudo: yes
+  become: yes
+  become_method: sudo
   template:
     src: notify-im-kayac.py.j2
     dest: "{{ supervisor_scripts_dir }}notify-im-kayac.py"
     mode: "u=rwx,g=rwx,o=rx"
 - name: put listener config
-  sudo: yes
+  become: yes
+  become_method: sudo
   template:
     src: listener-im-kayac.conf.j2
     dest: "{{ supervisor_conf_dir }}notify-im-kayac.conf"
   register: result
 - name: add listener
-  sudo: yes
+  become: yes
+  become_method: sudo
   supervisorctl:
     name: notify-im-kayac
     state: restarted

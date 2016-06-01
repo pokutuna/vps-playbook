@@ -8,7 +8,8 @@
   fail:
     msg: "http_stub_status_module is not enabled"
 - name: put
-  sudo: yes
+  become: yes
+  become_method: sudo
   template:
     src: http_stub_status.nginx.conf.j2
     dest: "{{ nginx_sites_enabled_dir}}http_stub_status.nginx.conf"

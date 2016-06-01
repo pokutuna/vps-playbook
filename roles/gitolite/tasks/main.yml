@@ -3,8 +3,9 @@
   set_fact:
     connecting_port: "{{ ansible_env.SSH_CLIENT.split(' ')[-1] }}"
 - name: git clone gitolite-admin
-  sudo: yes
-  sudo_user: "{{ gitolite_user_name }}"
+  become: yes
+  become_method: sudo
+  become_user: "{{ gitolite_user_name }}"
   git:
     accept_hostkey=yes
     repo=ssh://{{ gitolite_user_name }}@localhost:{{ connecting_port }}/gitolite-admin.git
