@@ -9,5 +9,6 @@
     - deploy_user
     - gitolite
     - xbuild
+    - docker
   vars_files:
     - vars/main.yml

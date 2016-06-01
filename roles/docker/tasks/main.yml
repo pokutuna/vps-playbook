@@ -1,0 +1,9 @@
+---
+- name: install docker.io
+  become: yes
+  become_method: sudo
+  apt:
+    name: docker.io
+    state: latest
+    update_cache: yes
+  notify: restart
