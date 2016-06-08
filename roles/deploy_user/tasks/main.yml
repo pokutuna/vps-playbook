@@ -6,6 +6,7 @@
     name: "{{ user_deploy_username }}"
     createhome: yes
     generate_ssh_key: yes
+    groups: deploy,docker
 - name: put authorized_keys from github
   become: yes
   become_method: sudo
