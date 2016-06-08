@@ -1,25 +1,27 @@
 ---
-- name: install docker.io
+- name: import GPG key
+  become: yes
+  become_method: sudo
+  apt_key:
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    id: 58118E89F3A912897C070ADBF76221572C52609D
+
+- name: add repository
+  become: yes
+  become_method: sudo
+  apt_repository:
+    repo: 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
+    update_cache: yes
+
+- name: install docker
   become: yes
   become_method: sudo
   apt:
-    name: docker.io
+    name: docker-engine
     state: latest
     update_cache: yes
   notify: restart
 
-- name: install pip
+- include: docker-compose.yml
   become: yes
   become_method: sudo
-  apt:
-    name: "{{ item }}"
-  with_items:
-    - python-dev
-    - python-pip
-
-- name: install docker-compose
-  become: yes
-  become_method: sudo
-  pip:
-    name: docker-compose
-    state: latest
