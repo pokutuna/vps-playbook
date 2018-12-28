@@ -18,8 +18,7 @@ $ ansible-playbook site.yml
 
 # Referencing Environment Variables
 - `MACKEREL_API_KEY`: setup for mackerel-agent
-- `IM_KAYAC_USERNAME`: notify process events under the supervisord by im-kayac
-- `IM_KAYAC_PASSWORD`: authenticate im-kayac api (optional)
+- `LINE_NOTIFY_TOKEN`: notify process events under the supervisord by line-notify
 
 
 # `pre_setup.yml`

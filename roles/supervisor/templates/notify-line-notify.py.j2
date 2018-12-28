@@ -8,14 +8,14 @@ import urllib2
 from supervisor import childutils
 
 def notify(message):
-    host = 'http://im.kayac.com/api/post/{{ im_kayac_username }}'
+    host = 'https://notify-api.line.me/api/notify'
     data = { 'message': message }
 
-    {% if im_kayac_use_password -%}
-    data['password'] = '{{ im_kayac_password }}'
-    {% endif %}
-
-    req = urllib2.Request(host, urllib.urlencode(data))
+    req = urllib2.Request(
+        url=host,
+        data=urllib.urlencode(data),
+        headers={'authorization': 'Bearer {{ line_notify_token }}'}
+    )
     res = urllib2.urlopen(req)
     sys.stderr.write(res.read() + '\n')
     sys.stderr.flush()

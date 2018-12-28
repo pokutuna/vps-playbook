@@ -26,9 +26,7 @@ mackerel_agent_plugins:
   linux: "/usr/local/bin/mackerel-plugin-linux"
   nginx: "/usr/local/bin/mackerel-plugin-nginx -port={{ nginx_stub_status_port }} -path={{ nginx_stub_status_location }}"
 
-im_kayac_username: "{{ lookup('env', 'IM_KAYAC_USERNAME') }}"
-im_kayac_use_password: no
-im_kayac_password: "{{ lookup('env', 'IM_KAYAC_PASSWORD') }}"
+line_notify_token: "{{ lookup('env', 'LINE_NOTIFY_TOKEN') }}"
 
 ufw_allow_ports:
   - 80

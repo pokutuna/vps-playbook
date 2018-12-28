@@ -9,20 +9,20 @@
   become: yes
   become_method: sudo
   template:
-    src: notify-im-kayac.py.j2
-    dest: "{{ supervisor_scripts_dir }}notify-im-kayac.py"
+    src: notify-line-notify.py.j2
+    dest: "{{ supervisor_scripts_dir }}notify-line-notify.py"
     mode: "u=rwx,g=rwx,o=rx"
 - name: put listener config
   become: yes
   become_method: sudo
   template:
-    src: listener-im-kayac.conf.j2
-    dest: "{{ supervisor_conf_dir }}notify-im-kayac.conf"
+    src: listener-line-notify.conf.j2
+    dest: "{{ supervisor_conf_dir }}notify-line-notify.conf"
   register: result
 - name: add listener
   become: yes
   become_method: sudo
   supervisorctl:
-    name: notify-im-kayac
+    name: notify-line-notify
     state: restarted
   when: result.changed
