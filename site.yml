@@ -8,7 +8,7 @@
     - supervisor
     - docker
     - deploy_user
-    - gitolite
+    # - gitolite
     - xbuild
   vars_files:
     - vars/main.yml
