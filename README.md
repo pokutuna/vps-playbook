@@ -2,6 +2,12 @@ vps-playbook
 ===
 
 # How to Play
+- put `hosts` like this
+  ```
+  [servers]
+  your.server.domain.or.ip
+  ```
+
 ```shell
 $ ansible-galaxy install -r requriements.yml
 $ ansible-playbook site.yml
